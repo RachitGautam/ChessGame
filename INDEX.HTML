@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Chess Game</h1>
+        <div id="chessboard"></div>
+        <div class="status-container">
+            <div id="gameStatus">White's Turn</div>
+            <button id="resetButton">Reset Game</button>
+        </div>
+        <div class="captured-pieces">
+            <div class="captured-section">
+                <h3>Captured White Pieces</h3>
+                <div id="capturedWhite"></div>
+            </div>
+            <div class="captured-section">
+                <h3>Captured Black Pieces</h3>
+                <div id="capturedBlack"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

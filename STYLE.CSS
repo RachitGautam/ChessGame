@@ -1,0 +1,235 @@
+/* General body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Game container styling */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2c2c2c;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border: 3px solid #555;
+}
+
+.game-container h1 {
+    margin: 0 0 20px 0;
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Chessboard styling */
+#chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(8, 70px);
+    border: 5px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a1a;
+}
+
+/* Chessboard cells */
+.cell {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+/* Alternating cell colors */
+.cell.light {
+    background-color: #f0d9b5;
+}
+
+.cell.dark {
+    background-color: #b58863;
+}
+
+/* Highlight for selected piece */
+.cell.selected {
+    box-shadow: inset 0 0 0 4px #4CAF50;
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+/* Highlight for possible moves */
+.cell.highlight {
+    cursor: pointer;
+    position: relative;
+}
+
+.cell.highlight::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(26, 131, 178, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cell.highlight.capture::after {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 4px solid rgba(255, 77, 77, 0.7);
+    border-radius: 0;
+}
+
+/* Highlight for check */
+.cell.in-check {
+    background-color: #ff4d4d !important;
+    animation: checkPulse 1s infinite;
+}
+
+@keyframes checkPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px #ff0000;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff0000;
+    }
+}
+
+/* Styling for the chess pieces */
+.piece {
+    font-size: 48px;
+    cursor: pointer;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.2s ease-in-out;
+}
+
+.piece.white {
+    color: #ffffff;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8));
+}
+
+.piece.black {
+    color: #1a1a1a;
+    filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.3));
+}
+
+.piece:hover {
+    transform: scale(1.15);
+}
+
+/* Status and turn indicator */
+.status-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#gameStatus {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset button styling */
+#resetButton {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#resetButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+#resetButton:active {
+    transform: translateY(0);
+}
+
+/* Captured pieces section */
+.captured-pieces {
+    display: flex;
+    gap: 30px;
+    margin-top: 25px;
+    width: 100%;
+    justify-content: center;
+}
+
+.captured-section {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px;
+}
+
+.captured-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+#capturedWhite,
+#capturedBlack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-height: 50px;
+}
+
+.captured-piece {
+    font-size: 24px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #chessboard {
+        grid-template-columns: repeat(8, 50px);
+        grid-template-rows: repeat(8, 50px);
+    }
+
+    .cell {
+        width: 50px;
+        height: 50px;
+    }
+
+    .piece {
+        font-size: 32px;
+    }
+
+    .game-container h1 {
+        font-size: 1.8em;
+    }
+
+    .captured-pieces {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
